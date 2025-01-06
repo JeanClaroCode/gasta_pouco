@@ -24,13 +24,13 @@ jobs:
               run: docker build -t jeanclarodev/gasta_pouco .
             - name: Publish image
               run: docker push jeanclarodev/gasta_pouco 
-    deploy: 
-        needs: build
-        runs-on: self-hosted
-        steps: 
-            - name: Pull image docker hub
-              run: docker pull jeanclarodev/gasta_pouco:latest
-            - name: remove container
-              run: docker rm -f gasta_pouco
-            - name: Run docker container gasta_pouco
-              run: docker run -d -p 8080:8080 -e DATABASE_URL=${{secrets.DATABASE_URL}} -e DATABASE_PASSWORD=${{secrets.DATABASE_PASSWORD}} -e DATABASE_USERNAME=${{secrets.DATABASE_USERNAME}} --name gasta_pouco  jeanclarodev/gasta_pouco
+    #deploy: 
+        #needs: build
+        #runs-on: self-hosted
+        #steps: 
+            #- name: Pull image docker hub
+             # run: docker pull jeanclarodev/gasta_pouco:latest
+           # - name: remove container
+           #   run: docker rm -f gasta_pouco
+            #- name: Run docker container gasta_pouco
+            #  run: docker run -d -p 8080:8080 -e DATABASE_URL=${{secrets.DATABASE_URL}} -e DATABASE_PASSWORD=${{secrets.DATABASE_PASSWORD}} -e DATABASE_USERNAME=${{secrets.DATABASE_USERNAME}} --name gasta_pouco  jeanclarodev/gasta_pouco
