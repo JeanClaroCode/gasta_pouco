@@ -1,0 +1,36 @@
+name: Gestao de Gasto Application
+
+
+on:
+    push:
+        branches: [main]
+    workflow_dispatch: # Adicionado para permitir disparo manual
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps: 
+            - name: Checkout code
+              uses: actions/checkout@v3
+            - name: Setup Java
+              uses: actions/setup-java@v3
+              with:
+                distribution: temurin
+                java-version: 17
+            - name: Build Project
+              run: mvn clean install
+            - name: Login docker
+              run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+            - name: Build docker image
+              run: docker build -t jeanclarodev/gasta_pouco .
+            - name: Publish image
+              run: docker push jeanclarodev/gasta_pouco 
+    deploy: 
+        needs: build
+        runs-on: self-hosted
+        steps: 
+            - name: Pull image docker hub
+              run: docker pull jeanclarodev/gasta_pouco:latest
+            - name: remove container
+              run: docker rm -f gasta_pouco
+            - name: Run docker container gasta_pouco
+              run: docker run -d -p 8080:8080 -e DATABASE_URL=${{secrets.DATABASE_URL}} -e DATABASE_PASSWORD=${{secrets.DATABASE_PASSWORD}} -e DATABASE_USERNAME=${{secrets.DATABASE_USERNAME}} --name gasta_pouco  jeanclarodev/gasta_pouco
