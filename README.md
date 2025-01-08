@@ -1,9 +1,9 @@
 # Gasta Pouco - Sistema de Gerenciamento de Ganhos e Despesas
-
 ## Descrição
 
 O **Gasta Pouco** é um sistema completo para gerenciamento de ganhos e despesas pessoais. Com ele, você pode registrar, consultar e organizar suas finanças por categoria e por mês. Este projeto foi desenvolvido com **Spring Boot** e oferece APIs para o gerenciamento de transações financeiras de ganhos e despesas.
 
+![Swagger API imagem](https://i.imgur.com/HiGtDKc.png)
 ### Funcionalidades Principais
 
 - **Cadastro de Transações**: Permite o cadastro de novos ganhos e despesas.
