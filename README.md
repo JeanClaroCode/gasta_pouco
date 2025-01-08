@@ -22,7 +22,7 @@ O **Gasta Pouco** é um sistema completo para gerenciamento de ganhos e despesas
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/gasta-pouco.git
+   git clone https://github.com/JeanClaroCode/gasta_pouco.git
    ```
 
 2. Navegue até o diretório do projeto:
